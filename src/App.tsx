@@ -1,22 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 function App() {
-  const [timerValue, setTimerValue] = React.useState<number>(0)
+  let [timerValue, setTimerValue] = React.useState<number>(0)
+  const [isStart, setIsStart] = React.useState<boolean>(false)
+
+  React.useEffect(
+    () => {
+      var interval:NodeJS.Timeout;
+      if(isStart)
+      {
+        if(timerValue === 0)
+        {
+          timerValue++
+        }
+        interval = setInterval(() => setTimerValue(timerValue++), 1000)
+      }
+      return () => {
+        clearInterval(interval)
+      }
+      // eslint-disable-next-line
+    }, [isStart]
+  )
+ 
+
   return (
     <div style={{ display : 'grid', placeContent : 'center' }} >
       <h1> Timer App using TDD </h1>
-      <div id="timer-value" >
+      <div id="timer-value" style={{ marginLeft : 'auto', marginRight : 'auto' }} >
         {
           timerValue
         }
       </div>
-      <div>
-        <button className="start-btn" >
+      <div style={{ marginLeft : 'auto', marginRight : 'auto' }} >
+        <button className="start-btn" disabled={isStart} onClick={() => setIsStart(!isStart)} >
               START
         </button>
-        <button className="stop-btn" >
+        <button style={{marginLeft : '5px'}} className="stop-btn" disabled={!isStart} onClick={() => setIsStart(!isStart)} >
               STOP
         </button>
       </div>
