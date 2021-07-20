@@ -3,22 +3,23 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [timerValue, setTimerValue] = React.useState<number>(0)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ display : 'grid', placeContent : 'center' }} >
+      <h1> Timer App using TDD </h1>
+      <div id="timer-value" >
+        {
+          timerValue
+        }
+      </div>
+      <div>
+        <button className="start-btn" >
+              START
+        </button>
+        <button className="stop-btn" >
+              STOP
+        </button>
+      </div>
     </div>
   );
 }
