@@ -36,7 +36,7 @@ function App() {
               START
         </button>
         <button style={{marginLeft : '5px'}} className="stop-btn" disabled={!isStart} onClick={() => setIsStart(!isStart)} >
-              STOP
+              STOP 
         </button>
       </div>
     </div>
